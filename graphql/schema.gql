@@ -1,0 +1,89 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AccessToken {
+  user: String!
+  accessToken: String!
+}
+
+enum AllowedUserRole {
+  user
+  admin
+}
+
+type Company {
+  _id: ID!
+  name: String!
+  address: String!
+}
+
+input CompanyInput {
+  name: String!
+  address: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input LoginInput {
+  username: String!
+  password: String!
+}
+
+type Mutation {
+  createVacancy(input: VacancyInput!): Vacancy!
+  deleteOneVacancy(id: String!): Vacancy!
+  updateOneVacancy(update: VacancyInput!, id: String!): Vacancy!
+  createCompany(input: CompanyInput!): Company!
+  deleteOneCompany(id: String!): Company!
+  createUser(input: UserInput!): User!
+  deleteOneUser(id: String!): User!
+}
+
+type Query {
+  getAllVacanciesOfThisCutomer: [Vacancy!]!
+  getAllVacanciesOfAllCompanies: [Vacancy!]!
+  me: User!
+  getVacancy(id: String!): Vacancy!
+  login(credentials: LoginInput!): AccessToken!
+  getCompany(id: String!): Company!
+  getAllCompanies: [Company!]!
+  getUser(id: String!): User!
+  getAllUsers: [User!]!
+}
+
+type User {
+  _id: ID!
+  name: String
+  username: String
+  password: String
+  role: String
+  customerId: String
+}
+
+input UserInput {
+  name: String!
+  customerId: String!
+  role: AllowedUserRole!
+  username: String!
+  password: String!
+}
+
+type Vacancy {
+  _id: ID!
+  title: String!
+  description: String
+  expiredAt: DateTime
+  company_id: ID
+  company: Company
+}
+
+input VacancyInput {
+  title: String
+  description: String
+  expiredAt: String
+  company_id: String
+}
