@@ -29,7 +29,7 @@ import { UserService } from './services/user.service';
                 name: 'USER_CLIENT',
                 transport: Transport.TCP,
                 options: {
-                    host: "localhost",
+                    host: "0.0.0.0",
                     port: 3000
                 }
             },
@@ -37,7 +37,7 @@ import { UserService } from './services/user.service';
                 name: 'AUTH_CLIENT',
                 transport: Transport.TCP,
                 options: {
-                    host: "localhost",
+                    host: "0.0.0.0",
                     port: 3001
                 }
             },
@@ -45,7 +45,7 @@ import { UserService } from './services/user.service';
                 name: 'VACANCY_CLIENT',
                 transport: Transport.TCP,
                 options: {
-                    host: "localhost",
+                    host: "0.0.0.0",
                     port: 3003
                 }
             },
@@ -53,7 +53,7 @@ import { UserService } from './services/user.service';
                 name: 'COMPANY_CLIENT',
                 transport: Transport.TCP,
                 options: {
-                    host: "localhost",
+                    host: "0.0.0.0",
                     port: 3004
                 }
             }

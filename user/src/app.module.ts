@@ -4,7 +4,7 @@ import { UserModule } from './user/user.module';
 //mongodb+srv://mark:mark@cluster0-w127a.mongodb.net/test?retryWrites=true&w=majority/nest
 @Module({
   imports: [
-    MongooseModule.forRoot("mongodb://localhost/user-service"),
+    MongooseModule.forRoot("mongodb://mongodb/user-service"),
     UserModule,
   ],
 })

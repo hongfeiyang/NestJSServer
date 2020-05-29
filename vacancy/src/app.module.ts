@@ -5,7 +5,7 @@ import { VacancyModule } from './vacancy/vacancy.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [VacancyModule, MongooseModule.forRoot('mongodb://localhost/vacancy-db')],
+  imports: [VacancyModule, MongooseModule.forRoot('mongodb://mongodb/vacancy-db')],
   controllers: [AppController],
   providers: [AppService],
 })

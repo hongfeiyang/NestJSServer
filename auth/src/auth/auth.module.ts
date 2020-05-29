@@ -15,7 +15,7 @@ import { jwtContants } from "./jwt.constants";
             name: 'USER_CLIENT',
             transport: Transport.TCP,
             options: {
-                host: 'localhost',
+                host: '0.0.0.0',
                 port: 3000, // client registered port must match microservice port, which is set in app.connectMicroservice
             }
         }]),

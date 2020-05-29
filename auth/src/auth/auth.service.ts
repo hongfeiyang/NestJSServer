@@ -8,9 +8,9 @@ import { Observable } from "rxjs";
 export class AuthService {
     constructor(@Inject('USER_CLIENT') private readonly client: ClientProxy, private readonly jwtService: JwtService) {}
 
-    async onApplicationBootstrap() {
-        await this.client.connect();
-      }
+    // async onApplicationBootstrap() {
+    //     await this.client.connect();
+    //   }
 
     async validateUser(username: string, password: string): Promise<any> {
         try {

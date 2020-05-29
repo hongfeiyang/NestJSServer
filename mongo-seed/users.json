@@ -1,0 +1,22 @@
+{
+	"_id": {
+		"$oid": "5ecfd059aadd1b78bbf12f98"
+	},
+	"name": "Mark Smith",
+	"username": "mark",
+	"password": "mark",
+	"role": "admin",
+	"customerId": "5ecfcf56bc44e7785b0d7450",
+	"__v": 0
+}
+{
+	"_id": {
+		"$oid": "5ecfd064aadd1b78bbf12f99"
+	},
+	"name": "Bob William",
+	"username": "bob",
+	"password": "bob",
+	"role": "user",
+	"customerId": "5ecfcf56bc44e7785b0d7450",
+	"__v": 0
+}
