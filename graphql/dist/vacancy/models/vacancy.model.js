@@ -24,19 +24,19 @@ let Vacancy = (() => {
         __metadata("design:type", String)
     ], Vacancy.prototype, "title", void 0);
     __decorate([
-        graphql_1.Field({ nullable: true }),
+        graphql_1.Field(),
         __metadata("design:type", String)
     ], Vacancy.prototype, "description", void 0);
     __decorate([
-        graphql_1.Field({ nullable: true }),
-        __metadata("design:type", Date)
+        graphql_1.Field(),
+        __metadata("design:type", String)
     ], Vacancy.prototype, "expiredAt", void 0);
     __decorate([
-        graphql_1.Field(type => graphql_1.ID, { nullable: true }),
+        graphql_1.Field(type => graphql_1.ID),
         __metadata("design:type", String)
     ], Vacancy.prototype, "company_id", void 0);
     __decorate([
-        graphql_1.Field(type => company_model_1.Company, { nullable: true }),
+        graphql_1.Field(type => company_model_1.Company),
         __metadata("design:type", company_model_1.Company)
     ], Vacancy.prototype, "company", void 0);
     Vacancy = __decorate([

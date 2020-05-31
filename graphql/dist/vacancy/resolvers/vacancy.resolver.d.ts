@@ -11,8 +11,8 @@ export declare class VacancyResolver {
     getAllVacanciesOfAllCompanies(): Promise<Vacancy[]>;
     me(user: User): Promise<User>;
     getVacancy(id: string): Promise<Vacancy>;
-    createVacancy(input: VacancyInput): Promise<any>;
-    deleteOneVacancy(id: string): Promise<Vacancy>;
-    updateOneVacancy(id: string, update: VacancyInput): Promise<any>;
+    createVacancy(input: VacancyInput, user: User): Promise<any>;
+    deleteOneVacancy(id: string): Promise<String>;
+    updateOneVacancy(id: string, update: VacancyInput, user: User): Promise<String>;
     company(vacancy: Vacancy): Promise<import("../models/company.model").Company>;
 }

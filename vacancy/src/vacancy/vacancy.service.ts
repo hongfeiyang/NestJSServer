@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Vacancy } from './vacancy.schema';
 import { createVacancyDto } from './create-vacancy.dto';
+import { RpcException } from '@nestjs/microservices';
 
 @Injectable()
 export class VacancyService {
@@ -22,16 +23,33 @@ export class VacancyService {
     }
 
     async findOne(id: string): Promise<Vacancy> {
-        const item = await this.vacancyModel.findOne({"_id": id}).exec();
-        return item
+        try {
+            const objectId = Types.ObjectId(id)
+            const res = await this.vacancyModel.findOne({"_id": id}).exec();
+            return res
+        } catch (e) {
+            throw new RpcException(`${e}`)
+        }
     }
 
-    async findOneAndDelete(id: string): Promise<Vacancy> {
-        return this.vacancyModel.findOneAndDelete({"_id": id}).exec();
+    async findOneAndDelete(id: string): Promise<any> {
+        try {
+            const objectId = Types.ObjectId(id)
+            const res = await this.vacancyModel.findOneAndDelete({"_id": id}).exec();
+            return res
+        } catch (e) {
+            throw new RpcException(`${e}`)
+        }
     }
 
-    async findOneAndUpdate(id: string, data: createVacancyDto): Promise<Vacancy> {
-        return this.vacancyModel.findOneAndUpdate({"_id": id}, data).exec()
+    async findOneAndUpdate(id: string, data: createVacancyDto): Promise<any> {
+        try {
+            const objectId = Types.ObjectId(id)
+            const res = await this.vacancyModel.findOneAndUpdate({"_id": id}, data).exec()
+            return res
+        } catch (e) {
+            throw new RpcException(`${e}`)
+        }
     }
 
     async removeAll() {

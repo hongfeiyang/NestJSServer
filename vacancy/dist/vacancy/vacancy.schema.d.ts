@@ -5,4 +5,4 @@ export declare class Vacancy extends Document {
     expiredAt: string;
     company_id: Types.ObjectId;
 }
-export declare const VacancySchema: import("mongoose").Schema<any>;
+export declare const VacancySchema: any;

@@ -26,10 +26,6 @@ let VacancyInput = (() => {
         graphql_1.Field({ nullable: true }),
         __metadata("design:type", String)
     ], VacancyInput.prototype, "expiredAt", void 0);
-    __decorate([
-        graphql_1.Field({ nullable: true }),
-        __metadata("design:type", String)
-    ], VacancyInput.prototype, "company_id", void 0);
     VacancyInput = __decorate([
         graphql_1.InputType()
     ], VacancyInput);

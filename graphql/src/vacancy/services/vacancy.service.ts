@@ -19,12 +19,14 @@ export class VacancyService {
         return this.vacancyClient.send({ role: 'vacancy', cmd: 'getOne' }, id).toPromise()
     }
 
-    async findOneAndRemove(id: string): Promise<Vacancy> {
-        return this.vacancyClient.send({ role: 'vacancy', cmd: 'remove' }, id).toPromise()
+    async findOneAndRemove(id: string): Promise<any> {
+        const res = await this.vacancyClient.send({ role: 'vacancy', cmd: 'remove' }, id).toPromise()
+        return res ? "success" : "failed"
     }
 
-    async findOneAndUpdate(id: string, update: VacancyDto) {
-        return this.vacancyClient.send({ role: 'vacancy', cmd: 'update'}, {"id": id, "update": update}).toPromise()
+    async findOneAndUpdate(id: string, update: VacancyDto): Promise<String> {
+        const res = await this.vacancyClient.send({ role: 'vacancy', cmd: 'update'}, {"id": id, "update": update}).toPromise()
+        return res ? "success" : "failed"
     }
 
     async createOne(data: VacancyDto) {

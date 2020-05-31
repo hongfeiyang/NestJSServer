@@ -13,6 +13,7 @@ exports.VacancySchema = exports.Vacancy = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 let Vacancy = (() => {
+    var _a;
     let Vacancy = class Vacancy extends mongoose_2.Document {
     };
     __decorate([
@@ -29,7 +30,7 @@ let Vacancy = (() => {
     ], Vacancy.prototype, "expiredAt", void 0);
     __decorate([
         mongoose_1.Prop({ required: true, }),
-        __metadata("design:type", mongoose_2.Types.ObjectId)
+        __metadata("design:type", typeof (_a = typeof mongoose_2.Types !== "undefined" && mongoose_2.Types.ObjectId) === "function" ? _a : Object)
     ], Vacancy.prototype, "company_id", void 0);
     Vacancy = __decorate([
         mongoose_1.Schema()

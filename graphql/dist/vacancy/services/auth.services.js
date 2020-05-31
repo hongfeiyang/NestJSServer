@@ -13,15 +13,17 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
+const operators_1 = require("rxjs/operators/");
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
+const rxjs_1 = require("rxjs");
 let AuthService = (() => {
     let AuthService = class AuthService {
         constructor(client) {
             this.client = client;
         }
         async login(username, password) {
-            const token = this.client.send({ role: 'auth', cmd: 'login' }, { "username": username, "password": password }).toPromise();
+            const token = this.client.send({ role: 'auth', cmd: 'login' }, { "username": username, "password": password }).pipe(operators_1.catchError(val => rxjs_1.of({ error: val.message }))).toPromise();
             return token;
         }
     };

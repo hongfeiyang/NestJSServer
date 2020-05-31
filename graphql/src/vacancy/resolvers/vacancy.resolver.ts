@@ -45,30 +45,29 @@ export class VacancyResolver {
 
     @Roles('admin')
     @Mutation(() => Vacancy)
-    async createVacancy(@Args('input') input: VacancyInput) {
-        const newInput = new VacancyDto()
-        newInput.company_id = input.company_id
-        newInput.description = input.description
-        newInput.expiredAt = input.expiredAt
-        newInput.title = input.title
-        return this.vacancyService.createOne(newInput)
+    async createVacancy(@Args('input') input: VacancyInput, @Context('user') user: User) {
+        const newVacancy = new VacancyDto()
+        newVacancy.company_id = user.customerId
+        newVacancy.description = input.description
+        newVacancy.expiredAt = input.expiredAt
+        newVacancy.title = input.title
+        return this.vacancyService.createOne(newVacancy)
     }
 
     @Roles('admin')
-    @Mutation(() => Vacancy)
+    @Mutation(() => String)
     async deleteOneVacancy(@Args('id', { type: () => String }) id: string) {
         return this.vacancyService.findOneAndRemove(id)
     }
 
     @Roles('admin')
-    @Mutation(() => Vacancy)
-    async updateOneVacancy(@Args('id', { type: () => String }) id: string, @Args('update') update: VacancyInput) {
+    @Mutation(() => String)
+    async updateOneVacancy(@Args('id', { type: () => String }) id: string, @Args('update') update: VacancyInput, @Context('user') user: User) {
         const newInput = new VacancyDto()
-        newInput.company_id = update.company_id
         newInput.description = update.description
         newInput.expiredAt = update.expiredAt
         newInput.title = update.title
-        return this.vacancyService.findOneAndUpdate(id, update)
+        return this.vacancyService.findOneAndUpdate(id, newInput)
     }
 
     @ResolveField()

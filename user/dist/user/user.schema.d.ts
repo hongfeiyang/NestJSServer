@@ -6,4 +6,4 @@ export declare class User extends Document {
     role: string;
     customerId: string;
 }
-export declare const UserSchema: import("mongoose").Schema<any>;
+export declare const UserSchema: any;

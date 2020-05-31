@@ -9,15 +9,15 @@ export class Vacancy {
   @Field()
   title: string;
 
-  @Field({ nullable: true })
-  description?: string;
+  @Field()
+  description: string;
 
-  @Field({ nullable: true })
-  expiredAt?: Date;
+  @Field()
+  expiredAt: String;
 
-  @Field(type => ID, {nullable: true})
+  @Field(type => ID)
   company_id: string;
 
-  @Field(type => Company, {nullable: true})
+  @Field(type => Company)
   company: Company;
 }

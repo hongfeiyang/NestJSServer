@@ -11,6 +11,6 @@ export class VacancyInput {
     @Field({nullable: true})
     expiredAt: string;
 
-    @Field({nullable: true})
-    company_id: string;
+    // @Field({nullable: true})
+    // company_id: string;
 }

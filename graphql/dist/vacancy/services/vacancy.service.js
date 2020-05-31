@@ -30,10 +30,22 @@ let VacancyService = (() => {
             return this.vacancyClient.send({ role: 'vacancy', cmd: 'getOne' }, id).toPromise();
         }
         async findOneAndRemove(id) {
-            return this.vacancyClient.send({ role: 'vacancy', cmd: 'remove' }, id).toPromise();
+            const res = await this.vacancyClient.send({ role: 'vacancy', cmd: 'remove' }, id).toPromise();
+            if (res) {
+                return "success";
+            }
+            else {
+                return "failed";
+            }
         }
         async findOneAndUpdate(id, update) {
-            return this.vacancyClient.send({ role: 'vacancy', cmd: 'update' }, { "id": id, "update": update }).toPromise();
+            const res = await this.vacancyClient.send({ role: 'vacancy', cmd: 'update' }, { "id": id, "update": update }).toPromise();
+            if (res) {
+                return "success";
+            }
+            else {
+                return "failed";
+            }
         }
         async createOne(data) {
             return this.vacancyClient.send({ role: 'vacancy', cmd: 'create' }, data).toPromise();

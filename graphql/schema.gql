@@ -3,8 +3,8 @@
 # ------------------------------------------------------
 
 type AccessToken {
-  user: String!
-  accessToken: String!
+  user: String
+  accessToken: String
 }
 
 enum AllowedUserRole {
@@ -23,11 +23,6 @@ input CompanyInput {
   address: String!
 }
 
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
 input LoginInput {
   username: String!
   password: String!
@@ -35,8 +30,8 @@ input LoginInput {
 
 type Mutation {
   createVacancy(input: VacancyInput!): Vacancy!
-  deleteOneVacancy(id: String!): Vacancy!
-  updateOneVacancy(update: VacancyInput!, id: String!): Vacancy!
+  deleteOneVacancy(id: String!): String!
+  updateOneVacancy(update: VacancyInput!, id: String!): String!
   createCompany(input: CompanyInput!): Company!
   deleteOneCompany(id: String!): Company!
   createUser(input: UserInput!): User!
@@ -75,15 +70,14 @@ input UserInput {
 type Vacancy {
   _id: ID!
   title: String!
-  description: String
-  expiredAt: DateTime
-  company_id: ID
-  company: Company
+  description: String!
+  expiredAt: String!
+  company_id: ID!
+  company: Company!
 }
 
 input VacancyInput {
   title: String
   description: String
   expiredAt: String
-  company_id: String
 }

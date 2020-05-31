@@ -1,5 +1,5 @@
 import { Controller, HttpException, HttpStatus } from '@nestjs/common';
-import { MessagePattern } from '@nestjs/microservices';
+import { MessagePattern, RpcException } from '@nestjs/microservices';
 import { createVacancyDto } from './create-vacancy.dto';
 import { VacancyService } from './vacancy.service';
 
@@ -21,7 +21,7 @@ export class VacancyController {
         cmd: 'getAllByCustomerId'
     })
     getVacanciesByCutomerId(customerId: string) {
-        if (!customerId) {throw new HttpException("customerId must not be null", HttpStatus.BAD_REQUEST)}
+        if (!customerId) {throw new RpcException("customerId must not be null")}
         return this.vacancyService.findAllByCustomerId(customerId);
     }
 
@@ -30,7 +30,7 @@ export class VacancyController {
         cmd: 'getOne'
     })
     getOneVacancy(id: string) {
-        if (!id) {throw new HttpException("id must not be null", HttpStatus.BAD_REQUEST)}
+        if (!id) {throw new RpcException("id must not be null")}
         return this.vacancyService.findOne(id);
     }
 
@@ -39,7 +39,7 @@ export class VacancyController {
         cmd: 'create'
     })
     createVacancy(data: createVacancyDto) {
-        if (!data) {throw new HttpException("no data received", HttpStatus.BAD_REQUEST)}
+        if (!data) {throw new RpcException("no data received")}
         return this.vacancyService.create(data)
     }
 
@@ -48,7 +48,7 @@ export class VacancyController {
         cmd: 'update'
     })
     updateVacancy(data: {id: string, update: createVacancyDto}) {
-        if (!data || !data.update || !data.id) {throw new HttpException("id and update must not be null", HttpStatus.BAD_REQUEST)}
+        if (!data || !data.update || !data.id) {throw new RpcException("id and update must not be null")}
         return this.vacancyService.findOneAndUpdate(data.id, data.update)
     }
 
@@ -57,7 +57,7 @@ export class VacancyController {
         cmd: 'remove'
     })
     removeVacancy(id: string) {
-        if (!id) {throw new HttpException("id must not be null", HttpStatus.BAD_REQUEST)}
+        if (!id) {throw new RpcException("id must not be null")}
         return this.vacancyService.findOneAndDelete(id)
     }
 

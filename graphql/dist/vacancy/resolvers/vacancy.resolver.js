@@ -47,24 +47,23 @@ let VacancyResolver = (() => {
             }
             return vacancy;
         }
-        async createVacancy(input) {
-            const newInput = new vacancy_dto_1.VacancyDto();
-            newInput.company_id = input.company_id;
-            newInput.description = input.description;
-            newInput.expiredAt = input.expiredAt;
-            newInput.title = input.title;
-            return this.vacancyService.createOne(newInput);
+        async createVacancy(input, user) {
+            const newVacancy = new vacancy_dto_1.VacancyDto();
+            newVacancy.company_id = user.customerId;
+            newVacancy.description = input.description;
+            newVacancy.expiredAt = input.expiredAt;
+            newVacancy.title = input.title;
+            return this.vacancyService.createOne(newVacancy);
         }
         async deleteOneVacancy(id) {
             return this.vacancyService.findOneAndRemove(id);
         }
-        async updateOneVacancy(id, update) {
+        async updateOneVacancy(id, update, user) {
             const newInput = new vacancy_dto_1.VacancyDto();
-            newInput.company_id = update.company_id;
             newInput.description = update.description;
             newInput.expiredAt = update.expiredAt;
             newInput.title = update.title;
-            return this.vacancyService.findOneAndUpdate(id, update);
+            return this.vacancyService.findOneAndUpdate(id, newInput);
         }
         async company(vacancy) {
             const { company_id } = vacancy;
@@ -101,14 +100,14 @@ let VacancyResolver = (() => {
     __decorate([
         roles_decorator_1.Roles('admin'),
         graphql_1.Mutation(() => vacancy_model_1.Vacancy),
-        __param(0, graphql_1.Args('input')),
+        __param(0, graphql_1.Args('input')), __param(1, graphql_1.Context('user')),
         __metadata("design:type", Function),
-        __metadata("design:paramtypes", [vacancy_input_1.VacancyInput]),
+        __metadata("design:paramtypes", [vacancy_input_1.VacancyInput, user_model_1.User]),
         __metadata("design:returntype", Promise)
     ], VacancyResolver.prototype, "createVacancy", null);
     __decorate([
         roles_decorator_1.Roles('admin'),
-        graphql_1.Mutation(() => vacancy_model_1.Vacancy),
+        graphql_1.Mutation(() => String),
         __param(0, graphql_1.Args('id', { type: () => String })),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [String]),
@@ -116,10 +115,10 @@ let VacancyResolver = (() => {
     ], VacancyResolver.prototype, "deleteOneVacancy", null);
     __decorate([
         roles_decorator_1.Roles('admin'),
-        graphql_1.Mutation(() => vacancy_model_1.Vacancy),
-        __param(0, graphql_1.Args('id', { type: () => String })), __param(1, graphql_1.Args('update')),
+        graphql_1.Mutation(() => String),
+        __param(0, graphql_1.Args('id', { type: () => String })), __param(1, graphql_1.Args('update')), __param(2, graphql_1.Context('user')),
         __metadata("design:type", Function),
-        __metadata("design:paramtypes", [String, vacancy_input_1.VacancyInput]),
+        __metadata("design:paramtypes", [String, vacancy_input_1.VacancyInput, user_model_1.User]),
         __metadata("design:returntype", Promise)
     ], VacancyResolver.prototype, "updateOneVacancy", null);
     __decorate([

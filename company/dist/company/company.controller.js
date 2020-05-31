@@ -15,6 +15,7 @@ const company_service_1 = require("./company.service");
 const company_dto_1 = require("./company.dto");
 const microservices_1 = require("@nestjs/microservices");
 let CompanyController = (() => {
+    var _a, _b;
     let CompanyController = class CompanyController {
         constructor(compancyService) {
             this.compancyService = compancyService;
@@ -48,13 +49,13 @@ let CompanyController = (() => {
         microservices_1.MessagePattern({ role: 'company', cmd: 'getOne' }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [String]),
-        __metadata("design:returntype", Promise)
+        __metadata("design:returntype", typeof (_a = typeof Promise !== "undefined" && Promise) === "function" ? _a : Object)
     ], CompanyController.prototype, "getOneCompany", null);
     __decorate([
         microservices_1.MessagePattern({ role: 'company', cmd: 'delete' }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [String]),
-        __metadata("design:returntype", Promise)
+        __metadata("design:returntype", typeof (_b = typeof Promise !== "undefined" && Promise) === "function" ? _b : Object)
     ], CompanyController.prototype, "deleteOneCompany", null);
     CompanyController = __decorate([
         common_1.Controller('/company'),

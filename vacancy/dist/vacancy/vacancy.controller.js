@@ -24,31 +24,31 @@ let VacancyController = (() => {
         }
         getVacanciesByCutomerId(customerId) {
             if (!customerId) {
-                throw new common_1.HttpException("customerId must not be null", common_1.HttpStatus.BAD_REQUEST);
+                throw new microservices_1.RpcException("customerId must not be null");
             }
             return this.vacancyService.findAllByCustomerId(customerId);
         }
         getOneVacancy(id) {
             if (!id) {
-                throw new common_1.HttpException("id must not be null", common_1.HttpStatus.BAD_REQUEST);
+                throw new microservices_1.RpcException("id must not be null");
             }
             return this.vacancyService.findOne(id);
         }
         createVacancy(data) {
             if (!data) {
-                throw new common_1.HttpException("no data received", common_1.HttpStatus.BAD_REQUEST);
+                throw new microservices_1.RpcException("no data received");
             }
             return this.vacancyService.create(data);
         }
         updateVacancy(data) {
             if (!data || !data.update || !data.id) {
-                throw new common_1.HttpException("id and update must not be null", common_1.HttpStatus.BAD_REQUEST);
+                throw new microservices_1.RpcException("id and update must not be null");
             }
             return this.vacancyService.findOneAndUpdate(data.id, data.update);
         }
         removeVacancy(id) {
             if (!id) {
-                throw new common_1.HttpException("id must not be null", common_1.HttpStatus.BAD_REQUEST);
+                throw new microservices_1.RpcException("id must not be null");
             }
             return this.vacancyService.findOneAndDelete(id);
         }

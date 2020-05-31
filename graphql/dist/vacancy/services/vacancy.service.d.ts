@@ -7,7 +7,7 @@ export declare class VacancyService {
     getAllVacanciesByCustomerId(customerId: string): Promise<Vacancy[]>;
     getAllVacancies(): Promise<Vacancy[]>;
     getOneVacancy(id: string): Promise<Vacancy>;
-    findOneAndRemove(id: string): Promise<Vacancy>;
-    findOneAndUpdate(id: string, update: VacancyDto): Promise<any>;
+    findOneAndRemove(id: string): Promise<String>;
+    findOneAndUpdate(id: string, update: VacancyDto): Promise<String>;
     createOne(data: VacancyDto): Promise<any>;
 }

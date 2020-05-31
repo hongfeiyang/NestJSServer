@@ -15,11 +15,11 @@ let AccessToken = (() => {
     let AccessToken = class AccessToken {
     };
     __decorate([
-        graphql_1.Field(),
+        graphql_1.Field({ nullable: true }),
         __metadata("design:type", String)
     ], AccessToken.prototype, "user", void 0);
     __decorate([
-        graphql_1.Field(),
+        graphql_1.Field({ nullable: true }),
         __metadata("design:type", String)
     ], AccessToken.prototype, "accessToken", void 0);
     AccessToken = __decorate([

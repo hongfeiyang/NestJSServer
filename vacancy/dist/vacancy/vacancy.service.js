@@ -17,7 +17,9 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const vacancy_schema_1 = require("./vacancy.schema");
+const microservices_1 = require("@nestjs/microservices");
 let VacancyService = (() => {
+    var _a;
     let VacancyService = class VacancyService {
         constructor(vacancyModel) {
             this.vacancyModel = vacancyModel;
@@ -33,14 +35,32 @@ let VacancyService = (() => {
             return this.vacancyModel.find().exec();
         }
         async findOne(id) {
-            const item = await this.vacancyModel.findOne({ "_id": id }).exec();
-            return item;
+            try {
+                const objectId = mongoose_2.Types.ObjectId(id);
+                const res = await this.vacancyModel.findOne({ "_id": id }).exec();
+                return res;
+            }
+            catch (e) {
+                throw new microservices_1.RpcException(`${e}`);
+            }
         }
         async findOneAndDelete(id) {
-            return this.vacancyModel.findOneAndDelete({ "_id": id }).exec();
+            try {
+                const objectId = mongoose_2.Types.ObjectId(id);
+                const res = await this.vacancyModel.findOneAndDelete({ "_id": id }).exec();
+            }
+            catch (e) {
+                throw new microservices_1.RpcException(`${e}`);
+            }
         }
         async findOneAndUpdate(id, data) {
-            return this.vacancyModel.findOneAndUpdate({ "_id": id }, data).exec();
+            try {
+                const objectId = mongoose_2.Types.ObjectId(id);
+                const res = await this.vacancyModel.findOneAndUpdate({ "_id": id }, data).exec();
+            }
+            catch (e) {
+                throw new microservices_1.RpcException(`${e}`);
+            }
         }
         async removeAll() {
             return this.vacancyModel.find().remove().exec();
@@ -49,7 +69,7 @@ let VacancyService = (() => {
     VacancyService = __decorate([
         common_1.Injectable(),
         __param(0, mongoose_1.InjectModel(vacancy_schema_1.Vacancy.name)),
-        __metadata("design:paramtypes", [mongoose_2.Model])
+        __metadata("design:paramtypes", [typeof (_a = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _a : Object])
     ], VacancyService);
     return VacancyService;
 })();

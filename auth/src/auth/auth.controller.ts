@@ -1,7 +1,7 @@
 import { AuthService } from "./auth.service";
 import { UseGuards, Post, Request, Controller, Get, Body, Req, UnauthorizedException, HttpException, HttpStatus } from "@nestjs/common";
 import { LocalAuthGuard } from "./local-auth.guards";
-import { MessagePattern } from "@nestjs/microservices";
+import { MessagePattern, RpcException } from "@nestjs/microservices";
 
 @Controller()
 export class AuthController {
@@ -16,9 +16,9 @@ export class AuthController {
 
     @MessagePattern({role: 'auth', cmd: 'login'})
     async loginMicroservice(data: {username: string, password: string}) {
-        if (!data) {throw new HttpException("please provide user credential", HttpStatus.FORBIDDEN)}
+        if (!data) {throw new RpcException("please provide user credential")}
         const user = await this.authService.validateUser(data.username, data.password)
-        if (!user) {throw new HttpException("user not found", HttpStatus.FORBIDDEN)}
+        if (!user) {throw new RpcException("user not found")}
         console.log(user)
         return this.authService.login(user)
     }
@@ -29,7 +29,7 @@ export class AuthController {
             const res = this.authService.validateToken(data.jwt);
             return res;
         } catch (e) {
-            console.log(e);
+            //throw new RpcException("Invalid Jwt Token")
             return false;
         }
     }

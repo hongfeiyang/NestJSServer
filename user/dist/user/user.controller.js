@@ -15,6 +15,7 @@ const user_service_1 = require("./user.service");
 const create_user_dto_1 = require("./create-user.dto");
 const microservices_1 = require("@nestjs/microservices");
 let UserController = (() => {
+    var _a, _b, _c, _d, _e;
     let UserController = class UserController {
         constructor(userService) {
             this.userService = userService;
@@ -28,11 +29,10 @@ let UserController = (() => {
         async create(createUserDto) {
             return this.userService.create(createUserDto);
         }
-        getUserByUsername(username) {
-            console.log(`trying to find username: ${username}`);
+        async getUserByUsername(username) {
             return this.userService.findOneByUsername(username);
         }
-        getUserById(id) {
+        async getUserById(id) {
             return this.userService.findOneById(id);
         }
     };
@@ -40,31 +40,31 @@ let UserController = (() => {
         microservices_1.MessagePattern({ role: 'user', cmd: 'getAll' }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
-        __metadata("design:returntype", Promise)
+        __metadata("design:returntype", typeof (_a = typeof Promise !== "undefined" && Promise) === "function" ? _a : Object)
     ], UserController.prototype, "listUser", null);
     __decorate([
         microservices_1.MessagePattern({ role: 'user', cmd: 'delete' }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [String]),
-        __metadata("design:returntype", Promise)
+        __metadata("design:returntype", typeof (_b = typeof Promise !== "undefined" && Promise) === "function" ? _b : Object)
     ], UserController.prototype, "findOneAndDelete", null);
     __decorate([
         microservices_1.MessagePattern({ role: 'user', cmd: 'create' }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
-        __metadata("design:returntype", Promise)
+        __metadata("design:returntype", typeof (_c = typeof Promise !== "undefined" && Promise) === "function" ? _c : Object)
     ], UserController.prototype, "create", null);
     __decorate([
         microservices_1.MessagePattern({ role: 'user', cmd: 'getByUsername' }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [String]),
-        __metadata("design:returntype", Promise)
+        __metadata("design:returntype", typeof (_d = typeof Promise !== "undefined" && Promise) === "function" ? _d : Object)
     ], UserController.prototype, "getUserByUsername", null);
     __decorate([
         microservices_1.MessagePattern({ role: 'user', cmd: 'getById' }),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [String]),
-        __metadata("design:returntype", Promise)
+        __metadata("design:returntype", typeof (_e = typeof Promise !== "undefined" && Promise) === "function" ? _e : Object)
     ], UserController.prototype, "getUserById", null);
     UserController = __decorate([
         common_1.Controller(),

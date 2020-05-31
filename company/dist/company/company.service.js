@@ -18,6 +18,7 @@ const mongoose_1 = require("@nestjs/mongoose");
 const company_schema_1 = require("./company.schema");
 const mongoose_2 = require("mongoose");
 let CompanyService = (() => {
+    var _a;
     let CompanyService = class CompanyService {
         constructor(companyModel) {
             this.companyModel = companyModel;
@@ -39,7 +40,7 @@ let CompanyService = (() => {
     CompanyService = __decorate([
         common_1.Injectable(),
         __param(0, mongoose_1.InjectModel(company_schema_1.Company.name)),
-        __metadata("design:paramtypes", [mongoose_2.Model])
+        __metadata("design:paramtypes", [typeof (_a = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _a : Object])
     ], CompanyService);
     return CompanyService;
 })();

@@ -24,7 +24,7 @@ let UserModule = (() => {
                         name: 'AUTH_CLIENT',
                         transport: microservices_1.Transport.TCP,
                         options: {
-                            host: 'localhost',
+                            host: '0.0.0.0',
                             port: 3001
                         }
                     }])

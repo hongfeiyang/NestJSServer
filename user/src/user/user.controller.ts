@@ -26,14 +26,13 @@ export class UserController {
     }
 
     @MessagePattern({role: 'user', cmd: 'getByUsername'})
-    getUserByUsername(username: string): Promise<User> {
-        console.log(`trying to find username: ${username}`);
+    async getUserByUsername(username: string): Promise<User> {
         return this.userService.findOneByUsername(username);
     }
 
 
     @MessagePattern({role: 'user', cmd: 'getById'})
-    getUserById(id: string): Promise<User> {
+    async getUserById(id: string): Promise<User> {
         return this.userService.findOneById(id);
     }
 }
