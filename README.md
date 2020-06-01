@@ -2,6 +2,21 @@
 
 #### This is a server written with NestJS, backed by mongodb and provides a BFF using GraphQL.
 
+
+## Use cases
+ 
+A company has a name and address
+A company can have multiple job vacancies
+A company has many users
+A vacancy has a title, description, expiredAt (datetime)
+A user has a name, username, password
+A user belongs to one customer only
+A user can have two types of roles: user and admin
+A user with an admin role can view, create, edit, and delete job vacancies
+A user without an admin role can view job vacancies only
+A user has to login first before doing any operation
+
+
 ## Logic and Structure
 
 This repo has 5 modules. There are 4 microservice modules, with each of them being:
@@ -14,6 +29,7 @@ Among these 4 microservices, 'Company', 'User', 'Vacancy' services has each one 
 The GraphQL module then communicates with each of these microservices to provide a set of APIs for managing users, companies, and mainly vacancies through a user-friendly web interface.
 
 Each time graphql server received a request, it will first query 'Auth' to verify the identity of the current user, where the 'Auth' service will query the 'User' service to get the identity and its own JwtService to verify its session validity. Upon confirming the user's identity, graphql server will query each database-related service to compose a corresponding response.
+
 
 ## Data
 
@@ -47,7 +63,7 @@ to start all services, wait for all services to start, then open up your browser
 ```
 http://localhost:3040/graphql
 ```
-to access the graphql web interface
+to access the graphql web interface.
 
 
 #### Login
