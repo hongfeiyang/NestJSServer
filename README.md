@@ -13,6 +13,8 @@ Among these 4 microservices, 'Company', 'User', 'Vacancy' services has each one 
 
 The GraphQL module then communicates with each of these microservices to provide a set of APIs for managing users, companies, and mainly vacancies through a user-friendly web interface.
 
+Each time graphql server received a request, it will first query 'Auth' to verify the identity of the current user, where the 'Auth' service will query the 'User' service to get the identity and its own JwtService to verify its session validity. Upon confirming the user's identity, graphql server will query each database-related service to compose a corresponding response.
+
 ## Data
 
 A set of data has already been injected into the databases at runtime to get you started.
@@ -29,7 +31,7 @@ A set of data has already been injected into the databases at runtime to get you
 |ObjectId(“5ecfd064aadd1b78bbf12f99”)|ObjectId(“5e5df7fc6953acd3dc50fe8f”)|Mark Smith|mark|mark|admin|
 
 
-### Usage
+## Usage
 
 ***You need to install `docker` and `npm` to run this packge***
 
@@ -86,7 +88,7 @@ You may proceed to any CRUD operations from now on. This token will expire in 1 
 
 #### View Vacancies
 
-To view any vacancies, you create query
+To view vacancies, you create query
 ```
 query {
   getAllVacanciesOfAllCompanies {
@@ -108,9 +110,38 @@ to view all vacanies for all companies (we only have 1 company here), or you cre
     ...
   }
 ```
-to view vacancies only pertaining to the company the current user belongs to
+to view vacancies only pertaining to the company the current user belongs to.
 
-#### Create A Vacancy
+You may choose to view a specific vacancy only by providing its id with this query:
+```
+query {
+  getVacancy(id: "5ed441bc48eb53001fca8faa") {
+    expiredAt
+    title
+    description
+    ...
+  }
+}
+```
+
+you may view the company detail by providing `company` to the response parameter:
+
+```
+query {
+  getVacancy(id: "5ed441bc48eb53001fca8faa") {
+    expiredAt
+    title
+    description
+    company {
+      _id
+      name
+      ...
+    }
+  }
+}
+```
+
+#### Create A Vacancy (admin only)
 
 to create a vacancy, you create mutation
 ```
@@ -134,7 +165,7 @@ to create a single vacancy for your company(customer).
 You need to supply a title, description and expiredAt value. The company_id will be automatically supplied to the system.
 
 
-#### Update A Vacancy
+#### Update A Vacancy (admin only)
 
 To update a vacany, you create mutation
 ```
@@ -147,7 +178,7 @@ with id being the '_id' of the vacancy you want to update, and 'update' being th
 You will receive either a 'success' or 'failed' response upon executing this mutation.
 
 
-#### Delete A Vacancy
+#### Delete A Vacancy (admin only)
 
 To delete a vacany, all you need to do is to provide the vacancy's id by executing this mutation:
 ```
@@ -157,3 +188,12 @@ mutation {
 ```
 Similar to update, you will also receive either a 'success' or 'failed' response upon executing this mutation.
 
+
+## Potential Improvements
+
+This is just a small demo project with a limited time frame, and there are tons of improvements that can be made to enhance its reliablity:
+1. Providing a more secure JWT secrete
+2. Adding a configuration service
+3. Adding more error handling with HTTPFilter
+4. Adding date representation and convertion with Transformer and Moment.js
+The list goes on and on...
