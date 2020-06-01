@@ -208,7 +208,7 @@ Similar to update, you will also receive either a 'success' or 'failed' response
 ## Potential Improvements
 
 This is just a small demo project with a limited time frame, and there are tons of improvements that can be made to enhance its reliablity:
-1. Providing a more secure JWT secrete
+1. Providing a more secure JWT secret
 2. Adding a configuration service
 3. Adding more error handling with HTTPFilter
 4. Adding date representation and convertion with Transformer and Moment.js
