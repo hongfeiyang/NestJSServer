@@ -5,16 +5,16 @@
 
 ## Use cases
  
-A company has a name and address
-A company can have multiple job vacancies
-A company has many users
-A vacancy has a title, description, expiredAt (datetime)
-A user has a name, username, password
-A user belongs to one customer only
-A user can have two types of roles: user and admin
-A user with an admin role can view, create, edit, and delete job vacancies
-A user without an admin role can view job vacancies only
-A user has to login first before doing any operation
+A company has a name and address<br/>
+A company can have multiple job vacancies<br/>
+A company has many users<br/>
+A vacancy has a title, description, expiredAt (datetime)<br/>
+A user has a name, username, password<br/>
+A user belongs to one customer only<br/>
+A user can have two types of roles: user and admin<br/>
+A user with an admin role can view, create, edit, and delete job vacancies<br/>
+A user without an admin role can view job vacancies only<br/>
+A user has to login first before doing any operation<br/>
 
 
 ## Logic and Structure
